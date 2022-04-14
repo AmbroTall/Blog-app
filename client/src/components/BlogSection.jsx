@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Blogs } from '../Blogs'
+// import { Blogs } from '../Blogs'
 import SingleBlogContainer from './SingleBlogContainer'
 import SideMenu from './SideMenu'
 import axios from 'axios'
@@ -29,18 +29,22 @@ const BlogSection = () => {
   useEffect(() => {
     const blogPosts = async() =>{
       const res = await axios.get("http://127.0.0.1:8000/blog/all/")
-      setPosts(res.data)
+      // console.log(res)
+      setPosts(res.data.results)
     }
     blogPosts()
   },[])
 
   console.log(posts)
 
+  
+  
+
   return (
     <SectionBlog>
       <BlogContainer>
-        {Blogs.map(blog =>(
-          <SingleBlogContainer key={blog.id} blog={blog} />
+        { posts.map((post) =>(
+          <SingleBlogContainer key={post.slug} blog={post} />
         ))}
       </BlogContainer>
       <SideMenuConatiner>
