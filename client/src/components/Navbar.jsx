@@ -71,6 +71,7 @@ cursor: pointer;
 
 
 const Navbar = () => {
+  const user = true
   return (
     <NavBar>
       <IconsTopLeft>
@@ -88,26 +89,40 @@ const Navbar = () => {
         </SocialIcon>
       </IconsTopLeft>
       <MenuCenter>
-      <Link to='./' style={{textDecoration: "none", color: "unset"}}>
-        <MenuItem>HOME</MenuItem>
+        <Link to='./' style={{textDecoration: "none", color: "unset"}}>
+          <MenuItem>HOME</MenuItem>
         </Link>
         <MenuItem>ABOUT</MenuItem>
         <MenuItem>CONTACT</MenuItem>
         <Link to='./write' style={{textDecoration: "none", color: "unset"}}>
-        <MenuItem>WRITE</MenuItem>
+          <MenuItem>WRITE</MenuItem>
         </Link>
-        <Link to='./login' style={{textDecoration: "none", color: "unset"}}>
-          <MenuItem>LOGIN</MenuItem>
-        </Link>
+        {user && 
+          <Link to='' style={{textDecoration: "none", color: "unset"}}>
+            <MenuItem>LOGOUT</MenuItem>
+          </Link>
+        }
       </MenuCenter>
+      { user ? (
       <ProfileTopRight>
-      <Link to='./settings' style={{textDecoration: "none", color: "unset"}}>
-        <ProfileImg src={pic} />
-      </Link>
+        <Link to='./settings' style={{textDecoration: "none", color: "unset"}}>
+          <ProfileImg src={pic} />
+        </Link>
         <SearchIcon>
           <SearchOutlined />
         </SearchIcon>
       </ProfileTopRight>
+      ) : (
+      <ProfileTopRight>
+        <Link to='./login' style={{textDecoration: "none", color: "unset"}}>
+          <MenuItem>LOGIN</MenuItem>
+        </Link>
+        <Link to='./register' style={{textDecoration: "none", color: "unset"}}>
+          <MenuItem>REGISTER</MenuItem>
+        </Link>
+      </ProfileTopRight>
+      )
+      }
     </NavBar>
   )
 }

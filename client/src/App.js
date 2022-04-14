@@ -11,6 +11,8 @@ import Write from "./components/pages/Write";
 import Settings from "./components/pages/Settings";
 
 function App() {
+  const user = true
+
   return (
     <div className="App">
       <Router>
@@ -19,10 +21,10 @@ function App() {
               <Home />
             </Route>
             <Route path="/login">
-              <Login />
+              {user ? <Home /> : <Login /> }
             </Route>
             <Route path="/write">
-              <Write />
+              {user ? <Write /> : <Login /> }
             </Route>
             <Route path="/settings">
               <Settings />
@@ -31,7 +33,7 @@ function App() {
               <SingleBlogPage />
             </Route>
             <Route path="/Register">
-              <Register />
+              {user ? <Home /> : <Register /> }
             </Route>
           </Switch>
       </Router>
